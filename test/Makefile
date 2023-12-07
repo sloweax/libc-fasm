@@ -1,0 +1,19 @@
+include ../config.mk
+
+CFLAGS+=-fno-builtin
+
+all: test
+
+../$(LIBC).a:
+	cd .. && $(MAKE) $(LIBC).a
+
+test-bin: test.c ../$(LIBC).a 
+	$(CC) $(CFLAGS) $^ -o $@
+
+test: test-bin
+	TEST_ENV=123 TEST_EMPTY= TEST_EQ== ./$^
+
+clean:
+	rm -f *.o test-bin
+
+.PHONY: clean all test

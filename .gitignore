@@ -1,0 +1,6 @@
+*.o
+*.bin
+*.out
+*.a
+*.so
+test-bin
