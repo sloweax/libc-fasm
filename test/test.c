@@ -42,6 +42,12 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(strncmp("abc123", "abc456", 3) == 0);
   ASSERT(strncmp("\x00 def", "\x00 abc", 5) == 0);
 
+  char *tmp = "1234567890";
+  ASSERT(strchr(tmp, '1') == tmp);
+  ASSERT(strchr(tmp, '2') == tmp + 1);
+  ASSERT(strchr(tmp, '0') == tmp + 9);
+  ASSERT(strchr(tmp, 'a') == NULL);
+
   ASSERT(strcmp(getenv("TEST_ENV"), "123") == 0);
   ASSERT(strcmp(getenv("TEST_EMPTY"), "") == 0);
   ASSERT(strcmp(getenv("TEST_EQ"), "=") == 0);
