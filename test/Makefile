@@ -1,6 +1,6 @@
 include ../config.mk
 
-CFLAGS+=-fno-builtin
+CFLAGS+=-fno-builtin -ffreestanding
 
 all: test
 

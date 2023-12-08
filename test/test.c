@@ -53,5 +53,25 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(strcmp(getenv("TEST_EQ"), "=") == 0);
   ASSERT(getenv("TEST_NONEXISTANT") == NULL);
 
+  char bufones[65];
+  char buf[65];
+
+  for (size_t i = 0; i < 65; i++) {
+    bufones[i] = 1;
+    buf[i] = 0;
+  }
+
+  bufones[64] = 0;
+
+  for (size_t i = 0; i < 32; i++) {
+    memcpy(buf, bufones, i);
+    ASSERT(strlen(bufones) == 64);
+    ASSERT(strlen(buf) == i);
+  }
+
+  memcpy(buf, bufones, 64);
+  ASSERT(strlen(bufones) == 64);
+  ASSERT(strlen(buf) == 64);
+
   return ret;
 }
