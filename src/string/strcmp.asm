@@ -9,8 +9,15 @@ strcmp:
   .loop:
     mov al, byte [rdi]
     cmp al, byte [rsi]
-    jz .return
     jne .return
+
+    test al, al
+    je .return
+
+    mov al, byte [rsi]
+    test al, al
+    je .return
+
     inc rdi
     inc rsi
     jmp .loop

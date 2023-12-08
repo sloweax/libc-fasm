@@ -35,6 +35,8 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(strcmp("abc", "123") != 0);
   ASSERT(strcmp("b", "a") > 0);
   ASSERT(strcmp("a", "b") < 0);
+  ASSERT(strcmp("1b", "1a") > 0);
+  ASSERT(strcmp("1a", "1b") < 0);
 
   ASSERT(strncmp("abc", "abc", 0) == 0);
   ASSERT(strncmp("abc", "123", 0) == 0);
