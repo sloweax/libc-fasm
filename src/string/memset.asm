@@ -18,7 +18,7 @@ memset:
   push tmp64
   push aux64
 
-  movsxd aux64, esi
+  movsx aux64, sil
   mov tmp64, 0x0101010101010101
   imul tmp64, aux64
 
