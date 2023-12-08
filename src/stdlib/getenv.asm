@@ -30,10 +30,10 @@ getenv:
   .loop:
     mov rax, envp
     mov rsi, [rax]
-    cmp rsi, 0
+    test rsi, rsi
     je .null
     call strncmp
-    cmp rax, 0
+    test rax, rax
     je .return
   .next:
     add envp, 8
