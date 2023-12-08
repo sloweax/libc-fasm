@@ -8,29 +8,25 @@ extrn strncmp
 extrn strlen
 public getenv
 getenv:
-  push rbp
-  mov rbp, rsp
-  sub rsp, 16
 
-  push rdi
-  push rsi
-  push rdx
-  push rbx
+  namelen equ rdx
+  envp    equ rcx
+  env     equ rsi
+  tmp     equ rbx
 
-  namelen equ qword [rbp - 8]
-  envp    equ qword [rbp - 16]
+  push envp
+  push env
+  push namelen
+  push tmp
 
   call strlen 
-  mov rdx, rax
   mov namelen, rax
 
-  mov rax, [plt environ]
-  mov envp, rax
+  mov envp, [plt environ]
 
   .loop:
-    mov rax, envp
-    mov rsi, [rax]
-    test rsi, rsi
+    mov env, [envp]
+    test env, env
     je .null
     call strncmp
     test rax, rax
@@ -40,19 +36,16 @@ getenv:
     jmp .loop
 
   .return:
-    mov rbx, rsi
-    add rbx, namelen
-    mov al, byte [rbx]
+    lea tmp, [env+namelen]
+    mov al, byte [tmp]
     cmp al, '='
     jne .next
-    mov rax, rbx
-    inc rax
+    lea rax, [tmp+1]
   .end:
-    pop rbx
-    pop rdx
-    pop rsi
-    pop rdi
-    leave
+    pop tmp
+    pop namelen
+    pop env
+    pop envp
     ret
   .null:
     mov rax, 0
