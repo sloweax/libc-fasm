@@ -114,6 +114,17 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(memcmp("abcd\x00", "abcd\xff", 5) < 0);
   ASSERT(memcmp("abcd\xff", "abcd\x00", 5) > 0);
 
+  ASSERT(bcmp("abcx", "abcz", 0) == 0);
+  ASSERT(bcmp("abcx", "123z", 0) == 0);
+  ASSERT(bcmp("abcx", "abcz", 3) == 0);
+  ASSERT(bcmp("aaa", "bbb", 3) < 0);
+  ASSERT(bcmp("bbb", "aaa", 3) > 0);
+  ASSERT(bcmp("1aaa", "1bbb", 3) < 0);
+  ASSERT(bcmp("1bbb", "1aaa", 3) > 0);
+  ASSERT(bcmp("abc123", "abc456", 3) == 0);
+  ASSERT(bcmp("abcd\x00", "abcd\xff", 5) < 0);
+  ASSERT(bcmp("abcd\xff", "abcd\x00", 5) > 0);
+
   memset(buf, 1, sizeof(buf));
   bzero(buf, sizeof(buf));
 
