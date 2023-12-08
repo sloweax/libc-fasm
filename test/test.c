@@ -100,5 +100,16 @@ int main(int argc, char **argv, char **envp) {
     memset(buf, 0, i);
   }
 
+  ASSERT(memcmp("abc", "abc", 0) == 0);
+  ASSERT(memcmp("abc", "123", 0) == 0);
+  ASSERT(memcmp("abc", "abc", 3) == 0);
+  ASSERT(memcmp("aaa", "bbb", 3) < 0);
+  ASSERT(memcmp("bbb", "aaa", 3) > 0);
+  ASSERT(memcmp("1aaa", "1bbb", 3) < 0);
+  ASSERT(memcmp("1bbb", "1aaa", 3) > 0);
+  ASSERT(memcmp("abc123", "abc456", 3) == 0);
+  ASSERT(memcmp("abcd\x00", "abcd\xff", 5) < 0);
+  ASSERT(memcmp("abcd\xff", "abcd\x00", 5) > 0);
+
   return ret;
 }
