@@ -14,7 +14,6 @@ memcpy:
 
   push current
   push left
-  push tmp64
 
   xor current, current
 
@@ -51,7 +50,6 @@ memcpy:
     jmp .loop
 
   .return:
-    pop tmp64
     pop left
     pop current
     mov rax, rdi

@@ -15,7 +15,6 @@ memset:
 
   push current
   push left
-  push tmp64
   push aux64
 
   movsx aux64, sil
@@ -54,7 +53,6 @@ memset:
 
   .return:
     pop aux64
-    pop tmp64
     pop left
     pop current
     mov rax, rdi
