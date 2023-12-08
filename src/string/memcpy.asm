@@ -54,5 +54,6 @@ memcpy:
     pop tmp64
     pop left
     pop current
+    mov rax, rdi
     ret
 

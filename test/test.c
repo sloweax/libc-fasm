@@ -79,6 +79,8 @@ int main(int argc, char **argv, char **envp) {
 
   bufones[sizeof(buf) - 1] = 0;
 
+  ASSERT(memcpy(buf, bufones, 0) == buf);
+
   for (size_t i = 0; i <= 32; i++) {
     memcpy(buf, bufones, i);
     ASSERT(strlen(bufones) == sizeof(buf) - 1);
@@ -89,7 +91,7 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(strlen(bufones) == sizeof(buf) - 1);
   ASSERT(strlen(buf) == sizeof(buf) - 1);
 
-  memset(buf, 0, sizeof(buf));
+  ASSERT(memset(buf, 0, sizeof(buf)) == buf);
   ASSERT(strlen(buf) == 0);
 
   int tmpint = 1;
