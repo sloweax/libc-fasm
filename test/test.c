@@ -6,12 +6,12 @@
 
 #define STR(x) STR_HELPER(x)
 #define STR_HELPER(x) #x
-#define ASSERT(x) test(#x, STR(__LINE__), __FILE__, (x) == 0)
+#define ASSERT(x) (test(#x, STR(__LINE__), __FILE__, (x)))
 
 int ret = 0;
 
-void test(char *exp, char *line, char *file, int status) {
-  if (status != 0) {
+int test(char *exp, char *line, char *file, int status) {
+  if (!status) {
     write(1, "FAILED\t", 7);
     write(1, file, strlen(file));
     write(1, ":", 1);
@@ -21,6 +21,8 @@ void test(char *exp, char *line, char *file, int status) {
     write(1, "\n", 1);
     ret = 1;
   }
+
+  return status;
 }
 
 int main(int argc, char **argv, char **envp) {
@@ -42,36 +44,47 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(strncmp("abc123", "abc456", 3) == 0);
   ASSERT(strncmp("\x00 def", "\x00 abc", 5) == 0);
 
-  char *tmp = "1234567890";
-  ASSERT(strchr(tmp, '1') == tmp);
-  ASSERT(strchr(tmp, '2') == tmp + 1);
-  ASSERT(strchr(tmp, '0') == tmp + 9);
-  ASSERT(strchr(tmp, 'a') == NULL);
+  char *tmpstr = "1234567890";
+  ASSERT(strchr(tmpstr, '1') == tmpstr);
+  ASSERT(strchr(tmpstr, '2') == tmpstr + 1);
+  ASSERT(strchr(tmpstr, '0') == tmpstr + 9);
+  ASSERT(strchr(tmpstr, 'a') == NULL);
 
   ASSERT(strcmp(getenv("TEST_ENV"), "123") == 0);
   ASSERT(strcmp(getenv("TEST_EMPTY"), "") == 0);
   ASSERT(strcmp(getenv("TEST_EQ"), "=") == 0);
   ASSERT(getenv("TEST_NONEXISTANT") == NULL);
 
-  char bufones[65];
   char buf[65];
+  char bufones[sizeof(buf)];
 
-  for (size_t i = 0; i < 65; i++) {
+  for (size_t i = 0; i < sizeof(buf); i++) {
     bufones[i] = 1;
     buf[i] = 0;
   }
 
-  bufones[64] = 0;
+  bufones[sizeof(buf) - 1] = 0;
 
-  for (size_t i = 0; i < 32; i++) {
+  for (size_t i = 0; i <= 32; i++) {
     memcpy(buf, bufones, i);
-    ASSERT(strlen(bufones) == 64);
+    ASSERT(strlen(bufones) == sizeof(buf) - 1);
     ASSERT(strlen(buf) == i);
   }
 
-  memcpy(buf, bufones, 64);
-  ASSERT(strlen(bufones) == 64);
-  ASSERT(strlen(buf) == 64);
+  memcpy(buf, bufones, sizeof(buf) - 1);
+  ASSERT(strlen(bufones) == sizeof(buf) - 1);
+  ASSERT(strlen(buf) == sizeof(buf) - 1);
+
+  memset(buf, 0, sizeof(buf));
+  ASSERT(strlen(buf) == 0);
+
+  int tmpint = 1;
+  for (size_t i = 0; i < sizeof(buf); i++) {
+    memset(buf, tmpint++, i);
+    if (!ASSERT(strlen(buf) == i))
+      break;
+    memset(buf, 0, i);
+  }
 
   return ret;
 }
