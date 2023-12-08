@@ -39,6 +39,8 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(strcmp("1a", "1b") < 0);
   ASSERT(strcmp("1b", "1") > 0);
   ASSERT(strcmp("1", "1b") < 0);
+  ASSERT(strcmp("\x00", "\xff") < 0);
+  ASSERT(strcmp("\xff", "\x00") > 0);
 
   ASSERT(strncmp("abc", "abc", 0) == 0);
   ASSERT(strncmp("abc", "123", 0) == 0);
@@ -53,6 +55,8 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(strncmp("\x01\x02\x00", "\x01\x00", 1) == 0);
   ASSERT(strncmp("1b", "1", 2) > 0);
   ASSERT(strncmp("1", "1b", 2) < 0);
+  ASSERT(strncmp("\x00", "\xff", 1) < 0);
+  ASSERT(strncmp("\xff", "\x00", 1) > 0);
 
   char *tmpstr = "1234567890";
   ASSERT(strchr(tmpstr, '1') == tmpstr);

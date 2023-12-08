@@ -33,8 +33,8 @@ strncmp:
     jmp .loop
 
   .return:
-    movsx eax, byte [rdi]
-    movsx edi, byte [rsi]
+    movzx eax, byte [rdi]
+    movzx edi, byte [rsi]
     sub eax, edi
   .null:
     pop rdx
