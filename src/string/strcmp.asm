@@ -12,11 +12,11 @@ strcmp:
     jne .return
 
     test al, al
-    je .return
+    jz .return
 
     mov al, byte [rsi]
     test al, al
-    je .return
+    jz .return
 
     inc rdi
     inc rsi

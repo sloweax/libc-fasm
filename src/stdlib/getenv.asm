@@ -27,10 +27,10 @@ getenv:
   .loop:
     mov env, [envp]
     test env, env
-    je .null
+    jz .null
     call strncmp
     test rax, rax
-    je .return
+    jz .return
   .next:
     add envp, 8
     jmp .loop

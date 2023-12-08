@@ -10,7 +10,7 @@ memcmp:
   xor eax, eax
 
   test rdx, rdx
-  je .end
+  jz .end
 
   .loop:
     dec rdx

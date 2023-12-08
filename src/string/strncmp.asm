@@ -9,7 +9,7 @@ strncmp:
 
   xor eax, eax
   test rdx, rdx
-  je .null
+  jz .null
 
   .loop:
     dec rdx
@@ -20,11 +20,11 @@ strncmp:
     jne .return
 
     test al, al
-    je .return
+    jz .return
 
     mov al, byte [rsi]
     test al, al
-    je .return
+    jz .return
 
     inc rdi
     inc rsi
