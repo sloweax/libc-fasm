@@ -6,7 +6,7 @@ extrn memset
 bzero:
   push rax
   mov rdx, rsi
-  mov rsi, 0
+  xor rsi, rsi
   call plt memset
   pop rax
   ret

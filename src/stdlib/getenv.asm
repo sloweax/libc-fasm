@@ -48,5 +48,5 @@ getenv:
     pop envp
     ret
   .null:
-    mov rax, 0
+    xor rax, rax
     jmp .end

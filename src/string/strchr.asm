@@ -17,6 +17,6 @@ strchr:
     ret
 
   .null:
-    mov rax, 0
+    xor rax, rax
     jmp .return
   
