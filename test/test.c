@@ -2,6 +2,7 @@
 #include "../include/stdint.h"
 #include "../include/stdlib.h"
 #include "../include/string.h"
+#include "../include/strings.h"
 #include "../include/unistd.h"
 
 #define STR(x) STR_HELPER(x)
@@ -112,6 +113,14 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(memcmp("abc123", "abc456", 3) == 0);
   ASSERT(memcmp("abcd\x00", "abcd\xff", 5) < 0);
   ASSERT(memcmp("abcd\xff", "abcd\x00", 5) > 0);
+
+  memset(buf, 1, sizeof(buf));
+  bzero(buf, sizeof(buf));
+
+  for (size_t i = 0; i < sizeof(buf); i++) {
+    if (!ASSERT(buf[i] == 0))
+      break;
+  }
 
   return ret;
 }

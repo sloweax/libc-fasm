@@ -4,6 +4,7 @@ all: $(LIBC).a
 
 OBJ+=$(patsubst %.asm,%.o,$(wildcard src/unistd/*.asm))
 OBJ+=$(patsubst %.asm,%.o,$(wildcard src/string/*.asm))
+OBJ+=$(patsubst %.asm,%.o,$(wildcard src/strings/*.asm))
 OBJ+=$(patsubst %.asm,%.o,$(wildcard src/stdlib/*.asm))
 OBJ+=$(patsubst %.asm,%.o,$(wildcard src/env/*.asm))
 OBJ+=$(patsubst %.asm,%.o,$(wildcard src/fcntl/*.asm))
