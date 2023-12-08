@@ -14,8 +14,7 @@ memcmp:
 
   .loop:
     dec rdx
-    test rdx, rdx
-    je .return
+    jz .return
     mov al, byte [rdi]
     cmp al, byte [rsi]
     jne .return
