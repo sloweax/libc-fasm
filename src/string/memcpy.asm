@@ -4,13 +4,13 @@ section '.text' executable
 public memcpy
 memcpy:
 
-  total equ rdx
+  total   equ rdx
   current equ rbx
-  left equ rcx
-  tmp64 equ rax
-  tmp32 equ eax
-  tmp16 equ ax
-  tmp8 equ al
+  left    equ rcx
+  tmp64   equ rax
+  tmp32   equ eax
+  tmp16   equ ax
+  tmp8    equ al
 
   push current
   push left
