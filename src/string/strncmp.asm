@@ -8,24 +8,35 @@ strncmp:
   push rdx
 
   xor eax, eax
+  test rdx, rdx
+  je .null
 
   .loop:
-    cmp rdx, 0
-    je .end
+    dec rdx
+    test rdx, rdx
+    je .return
+
     mov al, byte [rdi]
     cmp al, byte [rsi]
-    jz .cmp
-    jne .cmp
+    jne .return
+
+    test al, al
+    je .return
+
+    mov al, byte [rsi]
+    test al, al
+    je .return
+
     inc rdi
     inc rsi
-    dec rdx
+
     jmp .loop
 
-  .cmp:
+  .return:
     movsx eax, byte [rdi]
     movsx edi, byte [rsi]
     sub eax, edi
-  .end:
+  .null:
     pop rdx
     pop rsi
     pop rdi

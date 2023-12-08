@@ -43,8 +43,12 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(strncmp("abc", "abc", 3) == 0);
   ASSERT(strncmp("aaa", "bbb", 3) < 0);
   ASSERT(strncmp("bbb", "aaa", 3) > 0);
+  ASSERT(strncmp("1aaa", "1bbb", 3) < 0);
+  ASSERT(strncmp("1bbb", "1aaa", 3) > 0);
   ASSERT(strncmp("abc123", "abc456", 3) == 0);
   ASSERT(strncmp("\x00 def", "\x00 abc", 5) == 0);
+  ASSERT(strncmp("\x01\x00", "\x01\x00", 5) == 0);
+  ASSERT(strncmp("\x01\x02\x00", "\x01\x00", 1) == 0);
 
   char *tmpstr = "1234567890";
   ASSERT(strchr(tmpstr, '1') == tmpstr);
