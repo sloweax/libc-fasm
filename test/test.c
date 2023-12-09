@@ -181,5 +181,10 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(!isalnum('0' - 1));
   ASSERT(!isalnum('9' + 1));
 
+  ASSERT(isascii(0));
+  ASSERT(isascii(1));
+  ASSERT(isascii(127));
+  ASSERT(!isascii(128));
+
   return ret;
 }
