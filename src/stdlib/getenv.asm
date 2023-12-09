@@ -7,15 +7,18 @@ extrn strlen
 public getenv
 getenv:
 
-  namelen equ rdx
-  envp    equ rcx
-  env     equ rsi
-  tmp     equ rbx
+  name    equ r12
+  namelen equ r13
+  envp    equ r15
+  env     equ r14
+  tmp     equ r11
 
   push envp
   push env
   push namelen
-  push tmp
+  push name
+
+  mov name, rdi
 
   call strlen 
   mov namelen, rax
@@ -26,6 +29,9 @@ getenv:
     mov env, [envp]
     test env, env
     jz .null
+    mov rdi, name
+    mov rsi, env
+    mov rdx, namelen
     call strncmp
     test rax, rax
     jz .return
@@ -40,7 +46,7 @@ getenv:
     jne .next
     lea rax, [tmp+1]
   .end:
-    pop tmp
+    pop name
     pop namelen
     pop env
     pop envp
