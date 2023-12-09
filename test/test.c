@@ -140,5 +140,8 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(labs(LONG_MAX) == LONG_MAX);
   ASSERT(labs(LONG_MIN + 1) == LONG_MAX);
 
+  ASSERT(llabs(LLONG_MAX) == LLONG_MAX);
+  ASSERT(llabs(LLONG_MIN + 1) == LLONG_MAX);
+
   return ret;
 }

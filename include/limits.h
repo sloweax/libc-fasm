@@ -4,3 +4,5 @@
 #define INT_MIN (-1 - INT_MAX)
 #define LONG_MAX 0x7fffffffffffffff
 #define LONG_MIN (-1 - LONG_MAX)
+#define LLONG_MAX 0x7fffffffffffffff
+#define LLONG_MIN (-1 - LLONG_MAX)
