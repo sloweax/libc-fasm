@@ -20,11 +20,11 @@ memcpy:
     mov left, total
     sub left, current
     cmp left, 8
-    jge .8
+    jae .8
     cmp left, 4
-    jge .4
+    jae .4
     cmp left, 2
-    jge .2
+    jae .2
   .1:
     mov btmp, byte [current + rsi]
     mov byte [rdi + current], btmp
