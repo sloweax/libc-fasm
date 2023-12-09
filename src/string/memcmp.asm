@@ -3,9 +3,6 @@ format ELF64
 section '.text' executable
 public memcmp
 memcmp:
-  push rdi
-  push rsi
-  push rdx
 
   xor eax, eax
 
@@ -27,7 +24,4 @@ memcmp:
     movzx edi, byte [rsi]
     sub eax, edi
   .end:
-    pop rdx
-    pop rsi
-    pop rdi
     ret
