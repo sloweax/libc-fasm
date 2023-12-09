@@ -7,15 +7,15 @@ memset:
   total   equ rdx
   current equ r11
   left    equ rcx
-  tmp64   equ rax
-  tmp32   equ eax
-  tmp16   equ ax
-  tmp8    equ al
+  qtmp    equ rax
+  dtmp    equ eax
+  wtmp    equ ax
+  btmp    equ al
   aux64   equ r10
 
   movsx aux64, sil
-  mov tmp64, 0x0101010101010101
-  imul tmp64, aux64
+  mov qtmp, 0x0101010101010101
+  imul qtmp, aux64
 
   xor current, current
 
@@ -31,19 +31,19 @@ memset:
     cmp left, 2
     jge .2
   .1:
-    mov byte [rdi + current], tmp8
+    mov byte [rdi + current], btmp
     inc current
     jmp .loop
   .2:
-    mov word [rdi + current], tmp16
+    mov word [rdi + current], wtmp 
     add current, 2
     jmp .loop
-  .4:
-    mov dword [rdi + current], tmp32
-    add current, 4
+  .4: 
+    mov dword [rdi + current], dtmp
+     add current, 4
     jmp .loop
   .8:
-    mov qword [rdi + current], tmp64
+    mov qword [rdi + current], qtmp
     add current, 8
     jmp .loop
 

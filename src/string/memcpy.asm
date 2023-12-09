@@ -7,10 +7,10 @@ memcpy:
   total   equ rdx
   current equ r10
   left    equ rcx
-  tmp64   equ rax
-  tmp32   equ eax
-  tmp16   equ ax
-  tmp8    equ al
+  qtmp    equ rax
+  dtmp    equ eax
+  wtmp    equ ax
+  btmp    equ al
 
   xor current, current
 
@@ -26,23 +26,23 @@ memcpy:
     cmp left, 2
     jge .2
   .1:
-    mov tmp8, byte [current + rsi]
-    mov byte [rdi + current], tmp8
+    mov btmp, byte [current + rsi]
+    mov byte [rdi + current], btmp
     inc current
     jmp .loop
   .2:
-    mov tmp16, word [current + rsi]
-    mov word [rdi + current], tmp16
+    mov wtmp , word [current + rsi]
+    mov word [rdi + current], wtmp 
     add current, 2
     jmp .loop
   .4:
-    mov tmp32, dword [current + rsi]
-    mov dword [rdi + current], tmp32
+    mov dtmp , dword [current + rsi]
+    mov dword [rdi + current], dtmp 
     add current, 4
     jmp .loop
   .8:
-    mov tmp64, qword [current + rsi]
-    mov qword [rdi + current], tmp64
+    mov qtmp, qword [current + rsi]
+    mov qword [rdi + current], qtmp
     add current, 8
     jmp .loop
 
