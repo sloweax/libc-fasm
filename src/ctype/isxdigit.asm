@@ -26,7 +26,6 @@ isxdigit:
   xisbetween upperreg, 'A', 'F', chreg, dchreg, zeroreg
   xisbetween digitreg, '0', '9', chreg, dchreg, zeroreg
 
-  xor eax, eax
   or lowerreg, upperreg
   or lowerreg, digitreg
   mov eax, lowerreg
