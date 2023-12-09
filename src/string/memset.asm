@@ -5,17 +5,13 @@ public memset
 memset:
 
   total   equ rdx
-  current equ rbx
+  current equ r11
   left    equ rcx
   tmp64   equ rax
   tmp32   equ eax
   tmp16   equ ax
   tmp8    equ al
   aux64   equ r10
-
-  push current
-  push left
-  push aux64
 
   movsx aux64, sil
   mov tmp64, 0x0101010101010101
@@ -52,8 +48,5 @@ memset:
     jmp .loop
 
   .return:
-    pop aux64
-    pop left
-    pop current
     mov rax, rdi
     ret
