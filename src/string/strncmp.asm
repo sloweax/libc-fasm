@@ -3,9 +3,6 @@ format ELF64
 section '.text' executable
 public strncmp
 strncmp:
-  push rdi
-  push rsi
-  push rdx
 
   xor eax, eax
   test rdx, rdx
@@ -36,7 +33,4 @@ strncmp:
     movzx edi, byte [rsi]
     sub eax, edi
   .null:
-    pop rdx
-    pop rsi
-    pop rdi
     ret
