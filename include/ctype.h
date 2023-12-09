@@ -6,3 +6,4 @@ int isupper(int c);
 int isalpha(int c);
 int isalnum(int c);
 int isascii(int c);
+int isxdigit(int c);

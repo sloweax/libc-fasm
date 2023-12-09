@@ -10,6 +10,14 @@ macro isbetween a*, b* {
     ret
 }
 
+macro xisbetween dreg*, a*, b*, bchreg*, dchreg*, dzeroreg* {
+  xor dreg, dreg
+  cmp bchreg, a
+  cmovge dreg, dchreg
+  cmp bchreg, b
+  cmovg dreg, dzeroreg
+}
+
 macro isboth a*, b* {
   push rsi
   call a

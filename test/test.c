@@ -186,5 +186,18 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(isascii(127));
   ASSERT(!isascii(128));
 
+  ASSERT(isxdigit('f'));
+  ASSERT(!isxdigit('f' + 1));
+  ASSERT(isxdigit('F'));
+  ASSERT(!isxdigit('F' + 1));
+  ASSERT(isxdigit('a'));
+  ASSERT(!isxdigit('a' - 1));
+  ASSERT(isxdigit('A'));
+  ASSERT(!isxdigit('A' - 1));
+  ASSERT(isxdigit('0'));
+  ASSERT(!isxdigit('0' - 1));
+  ASSERT(isxdigit('9'));
+  ASSERT(!isxdigit('9' + 1));
+
   return ret;
 }
