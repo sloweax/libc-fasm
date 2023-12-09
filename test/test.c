@@ -1,3 +1,4 @@
+#include "../include/ctype.h"
 #include "../include/fcntl.h"
 #include "../include/limits.h"
 #include "../include/stdint.h"
@@ -142,6 +143,11 @@ int main(int argc, char **argv, char **envp) {
 
   ASSERT(llabs(LLONG_MAX) == LLONG_MAX);
   ASSERT(llabs(LLONG_MIN + 1) == LLONG_MAX);
+
+  ASSERT(isdigit('0'));
+  ASSERT(isdigit('9'));
+  ASSERT(!isdigit('9' + 1));
+  ASSERT(!isdigit('0' - 1));
 
   return ret;
 }

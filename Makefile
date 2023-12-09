@@ -8,6 +8,7 @@ OBJ+=$(patsubst %.asm,%.o,$(wildcard src/strings/*.asm))
 OBJ+=$(patsubst %.asm,%.o,$(wildcard src/stdlib/*.asm))
 OBJ+=$(patsubst %.asm,%.o,$(wildcard src/env/*.asm))
 OBJ+=$(patsubst %.asm,%.o,$(wildcard src/fcntl/*.asm))
+OBJ+=$(patsubst %.asm,%.o,$(wildcard src/ctype/*.asm))
 OBJ+=$(patsubst %.asm,%.o,$(wildcard src/crt/*.asm))
 
 %.o: %.asm
