@@ -1,4 +1,5 @@
 #include "../include/fcntl.h"
+#include "../include/limits.h"
 #include "../include/stdint.h"
 #include "../include/stdlib.h"
 #include "../include/string.h"
@@ -133,9 +134,8 @@ int main(int argc, char **argv, char **envp) {
       break;
   }
 
-  ASSERT(abs(1) == 1);
-  ASSERT(abs(-1) == 1);
-  ASSERT(abs(0) == 0);
+  ASSERT(abs(INT_MAX) == INT_MAX);
+  ASSERT(abs(INT_MIN + 1) == INT_MAX);
 
   return ret;
 }
