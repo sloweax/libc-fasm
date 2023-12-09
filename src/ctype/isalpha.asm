@@ -8,4 +8,5 @@ extrn islower
 extrn isupper
 isalpha:
   isboth <plt islower>, <plt isupper>
+  ret
 

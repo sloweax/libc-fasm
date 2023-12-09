@@ -25,5 +25,4 @@ macro isboth a*, b* {
   call b
   or eax, esi
   pop rsi
-  ret
 }

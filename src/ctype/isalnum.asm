@@ -8,4 +8,5 @@ extrn isalpha
 extrn isdigit
 isalnum:
   isboth <plt isalpha>, <plt isdigit>
+  ret
 
