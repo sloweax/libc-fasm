@@ -13,3 +13,4 @@ int execve(const char *pathname, char *const argv[], char *const envp[]);
 int execv(const char *pathname, char *const argv[]);
 void _exit(int status);
 pid_t getpid(void);
+pid_t getppid(void);
