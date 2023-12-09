@@ -199,5 +199,15 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(isxdigit('9'));
   ASSERT(!isxdigit('9' + 1));
 
+  ASSERT(tolower('A') == 'a');
+  ASSERT(tolower('Z') == 'z');
+  ASSERT(tolower('A' - 1) == 'A' - 1);
+  ASSERT(tolower('Z' + 1) == 'Z' + 1);
+
+  ASSERT(toupper('a') == 'A');
+  ASSERT(toupper('z') == 'Z');
+  ASSERT(toupper('a' - 1) == 'a' - 1);
+  ASSERT(toupper('z' + 1) == 'z' + 1);
+
   return ret;
 }

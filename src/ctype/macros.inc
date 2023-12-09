@@ -19,3 +19,13 @@ macro isboth a*, b* {
   or eax, ebx
   pop rbx
 }
+
+macro tox proc*, op*, val* {
+  call proc
+  test eax, eax
+  cmovz eax, edi
+  jz .return
+  op eax, val
+  .return:
+    ret
+}

@@ -7,3 +7,5 @@ int isalpha(int c);
 int isalnum(int c);
 int isascii(int c);
 int isxdigit(int c);
+int tolower(int c);
+int toupper(int c);
