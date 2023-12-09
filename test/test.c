@@ -159,5 +159,14 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(!isupper('Z' + 1));
   ASSERT(!isupper('A' - 1));
 
+  ASSERT(isalpha('A'));
+  ASSERT(isalpha('Z'));
+  ASSERT(!isalpha('Z' + 1));
+  ASSERT(!isalpha('A' - 1));
+  ASSERT(isalpha('a'));
+  ASSERT(isalpha('z'));
+  ASSERT(!isalpha('z' + 1));
+  ASSERT(!isalpha('a' - 1));
+
   return ret;
 }

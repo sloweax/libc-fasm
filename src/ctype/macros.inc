@@ -9,3 +9,13 @@ macro isbetween a*, b* {
     xor eax, eax
     ret
 }
+
+macro isboth a*, b* {
+  push rsi
+  call a
+  mov esi, eax
+  call b
+  or eax, esi
+  pop rsi
+  ret
+}
