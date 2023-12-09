@@ -149,5 +149,10 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(!isdigit('9' + 1));
   ASSERT(!isdigit('0' - 1));
 
+  ASSERT(islower('a'));
+  ASSERT(islower('z'));
+  ASSERT(!islower('z' + 1));
+  ASSERT(!islower('a' - 1));
+
   return ret;
 }
