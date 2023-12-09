@@ -6,15 +6,11 @@ section '.text' executable
 public isxdigit
 isxdigit:
   zeroreg   equ edx
-  qzeroreg  equ rdx
   chreg     equ dil
   dchreg    equ edi
   lowerreg  equ esi
-  qlowerreg equ rsi
   upperreg  equ ecx
-  qupperreg equ rcx
-  digitreg  equ ebx
-  qdigitreg equ rbx
+  digitreg  equ eax
 
   xor zeroreg, zeroreg
 
@@ -23,7 +19,6 @@ isxdigit:
   xisbetween digitreg, '0', '9', chreg, dchreg, zeroreg
 
   or lowerreg, upperreg
-  or lowerreg, digitreg
-  mov eax, lowerreg
+  or digitreg, lowerreg
   
   ret
