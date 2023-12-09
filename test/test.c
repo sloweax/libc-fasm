@@ -133,5 +133,9 @@ int main(int argc, char **argv, char **envp) {
       break;
   }
 
+  ASSERT(abs(1) == 1);
+  ASSERT(abs(-1) == 1);
+  ASSERT(abs(0) == 0);
+
   return ret;
 }
