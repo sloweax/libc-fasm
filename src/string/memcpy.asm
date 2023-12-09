@@ -5,15 +5,12 @@ public memcpy
 memcpy:
 
   total   equ rdx
-  current equ rbx
+  current equ r10
   left    equ rcx
   tmp64   equ rax
   tmp32   equ eax
   tmp16   equ ax
   tmp8    equ al
-
-  push current
-  push left
 
   xor current, current
 
@@ -50,8 +47,6 @@ memcpy:
     jmp .loop
 
   .return:
-    pop left
-    pop current
     mov rax, rdi
     ret
 
