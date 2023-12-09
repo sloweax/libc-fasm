@@ -168,5 +168,18 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(!isalpha('z' + 1));
   ASSERT(!isalpha('a' - 1));
 
+  ASSERT(isalnum('A'));
+  ASSERT(isalnum('Z'));
+  ASSERT(!isalnum('Z' + 1));
+  ASSERT(!isalnum('A' - 1));
+  ASSERT(isalnum('a'));
+  ASSERT(isalnum('z'));
+  ASSERT(!isalnum('z' + 1));
+  ASSERT(!isalnum('a' - 1));
+  ASSERT(isalnum('0'));
+  ASSERT(isalnum('9'));
+  ASSERT(!isalnum('0' - 1));
+  ASSERT(!isalnum('9' + 1));
+
   return ret;
 }
