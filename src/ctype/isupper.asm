@@ -6,4 +6,5 @@ section '.text' executable
 public isupper
 isupper:
   isbetween 'A', 'Z'
+  ret
 

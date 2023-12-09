@@ -6,4 +6,5 @@ section '.text' executable
 public islower
 islower:
   isbetween 'a', 'z'
+  ret
 

@@ -3,9 +3,6 @@ format ELF64
 section '.text' executable
 public strcmp
 strcmp:
-  push rdi
-  push rsi
-
   .loop:
     mov al, byte [rdi]
     cmp al, byte [rsi]
@@ -26,6 +23,4 @@ strcmp:
     movzx eax, byte [rdi]
     movzx edi, byte [rsi]
     sub eax, edi
-    pop rsi
-    pop rdi
     ret

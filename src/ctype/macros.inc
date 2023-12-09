@@ -1,15 +1,3 @@
-macro isbetween a*, b* {
-  xor eax, eax
-  cmp dil, a
-  cmovge eax, edi
-  cmp dil, b
-  jg .null
-  ret
-  .null:
-    xor eax, eax
-    ret
-}
-
 macro xisbetween dreg*, a*, b*, bchreg*, dchreg*, dzeroreg* {
   xor dreg, dreg
   cmp bchreg, a
@@ -18,11 +6,16 @@ macro xisbetween dreg*, a*, b*, bchreg*, dchreg*, dzeroreg* {
   cmovg dreg, dzeroreg
 }
 
+macro isbetween a*, b* {
+  xor esi, esi
+  xisbetween eax, a, b, dil, edi, esi
+}
+
 macro isboth a*, b* {
-  push rsi
+  push rbx
   call a
-  mov esi, eax
+  mov ebx, eax
   call b
-  or eax, esi
-  pop rsi
+  or eax, ebx
+  pop rbx
 }

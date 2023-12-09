@@ -16,10 +16,6 @@ isxdigit:
   digitreg  equ ebx
   qdigitreg equ rbx
 
-  push qzeroreg
-  push qlowerreg
-  push qupperreg
-  push qdigitreg
   xor zeroreg, zeroreg
 
   xisbetween lowerreg, 'a', 'f', chreg, dchreg, zeroreg
@@ -30,8 +26,4 @@ isxdigit:
   or lowerreg, digitreg
   mov eax, lowerreg
   
-  pop qdigitreg
-  pop qupperreg
-  pop qlowerreg
-  pop qzeroreg
   ret
