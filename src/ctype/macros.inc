@@ -27,9 +27,8 @@ macro tox proc*, op*, val* {
   mov ebx, edi
   call proc
   test eax, eax
-  cmovz eax, ebx
-  jz .return
   mov eax, ebx
+  jz .return
   op eax, val
   .return:
     pop rbx
