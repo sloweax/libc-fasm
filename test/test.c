@@ -137,5 +137,8 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(abs(INT_MAX) == INT_MAX);
   ASSERT(abs(INT_MIN + 1) == INT_MAX);
 
+  ASSERT(labs(LONG_MAX) == LONG_MAX);
+  ASSERT(labs(LONG_MIN + 1) == LONG_MAX);
+
   return ret;
 }
