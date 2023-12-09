@@ -7,6 +7,6 @@ public isalpha
 extrn islower
 extrn isupper
 isalpha:
-  isboth <plt islower>, <plt isupper>
+  isbetween2 'a', 'z', 'A', 'Z'
   ret
 

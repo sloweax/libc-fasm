@@ -7,6 +7,6 @@ public isalnum
 extrn isalpha
 extrn isdigit
 isalnum:
-  isboth <plt isalpha>, <plt isdigit>
+  isbetween3 'a', 'z', 'A', 'Z', '0', '9'
   ret
 

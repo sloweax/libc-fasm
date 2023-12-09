@@ -1,31 +1,37 @@
-macro xisbetween dreg*, a*, b*, bchreg*, dchreg*, dzeroreg* {
-  xor dreg, dreg
-  cmp bchreg, a
-  cmovge dreg, dchreg
-  cmp bchreg, b
-  cmovg dreg, dzeroreg
+macro isbetween a*, b*, dchar=edi, dout=eax, bout=al {
+  xor dout, dout
+  sub dchar, a
+  cmp dchar, b - a
+  setbe bout
 }
 
-macro isbetween a*, b* {
-  xor esi, esi
-  xisbetween eax, a, b, dil, edi, esi
+macro isbetween2 a*, b*, x*, y* {
+  mov esi, edi
+  isbetween a, b, edi, eax, al
+  isbetween x, y, esi, edx, dl
+  or al, dl
 }
 
-macro isboth a*, b* {
-  push rbx
-  call a
-  mov ebx, eax
-  call b
-  or eax, ebx
-  pop rbx
+macro isbetween3 a*, b*, x*, y*, i*, j* {
+  mov esi, edi
+  isbetween a, b, edi, eax, al
+  mov edi, esi
+  isbetween x, y, esi, edx, dl
+  or al, dl
+  isbetween i, j, edi, ecx, cl
+  or al, cl
 }
 
 macro tox proc*, op*, val* {
+  push rbx
+  mov ebx, edi
   call proc
   test eax, eax
-  cmovz eax, edi
+  cmovz eax, ebx
   jz .return
+  mov eax, ebx
   op eax, val
   .return:
+    pop rbx
     ret
 }
