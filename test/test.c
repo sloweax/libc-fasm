@@ -185,6 +185,7 @@ int main(int argc, char **argv, char **envp) {
   ASSERT(isascii(1));
   ASSERT(isascii(127));
   ASSERT(!isascii(128));
+  ASSERT(!isascii(-1));
 
   ASSERT(isxdigit('f'));
   ASSERT(!isxdigit('f' + 1));
