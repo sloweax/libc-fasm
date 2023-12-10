@@ -99,11 +99,17 @@ int main(int argc, char **argv, char **envp) {
 
   int tmpint = 1;
   for (size_t i = 0; i < sizeof(buf); i++) {
-    memset(buf, tmpint++, i);
+    memset(buf, tmpint, i);
     if (!ASSERT(strlen(buf) == i))
       break;
+    for (size_t j = 0; j < i; j++) {
+      if (!ASSERT(buf[j] == tmpint))
+        goto out;
+    }
+    tmpint++;
     memset(buf, 0, i);
   }
+out:
 
   ASSERT(memcmp("abc", "abc", 0) == 0);
   ASSERT(memcmp("abc", "123", 0) == 0);
