@@ -4,10 +4,13 @@ CFLAGS+=-fno-builtin -ffreestanding
 
 all: test
 
-../$(LIBC).a:
-	cd .. && $(MAKE) $(LIBC).a
+%.o: %.c
+	$(CC) $(CFLAGS) $^ -c -o $@
 
-test-bin: test.c ../$(LIBC).a 
+../$(LIBC).a:
+	cd .. && $(MAKE) PREFIX=fasm_ $(LIBC).a
+
+test-bin: test.o ../$(LIBC).a
 	$(CC) $(CFLAGS) $^ -o $@
 
 test: test-bin
