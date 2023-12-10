@@ -163,12 +163,13 @@ out:
       break;
   }
 
-  for (int i = 0; i <= 0xff; i++) {
+  for (int i = -0xff; i <= 0xff; i++) {
     tmpint = CASSERT(isdigit(i) ? 1 : 0) && CASSERT(islower(i) ? 1 : 0) &&
              CASSERT(isupper(i) ? 1 : 0) && CASSERT(isalpha(i) ? 1 : 0) &&
              CASSERT(isalnum(i) ? 1 : 0) && CASSERT(isascii(i) ? 1 : 0) &&
-             CASSERT(isxdigit(i) ? 1 : 0) && CASSERT(tolower(i)) &&
-             CASSERT(toupper(i));
+             CASSERT(isxdigit(i) ? 1 : 0) &&
+             CASSERT(tolower((unsigned char)i)) &&
+             CASSERT(toupper((unsigned char)i));
     if (!tmpint) {
       printf("failed on i = %d\n", i);
       break;
