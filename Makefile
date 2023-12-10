@@ -7,10 +7,10 @@ OBJ+=$(patsubst %.asm,%.o,$(wildcard src/sys/*/*.asm))
 
 %.o: %.asm
 	$(FASM) $(FASMFLAGS) $^ $@
-	@[ "$(PREFIX)" ] && objcopy --prefix-symbols=$(PREFIX) $@ || true
 
 $(LIBC).a: $(OBJ)
 	ar rcs $@ $^
+	@[ $(PREFIX) ] && objcopy $@ --prefix-symbols=$(PREFIX) || true
 
 clean:
 	rm -f $(LIBC).a $(OBJ)
