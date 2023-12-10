@@ -1,3 +1,4 @@
+PREFIX=
 FASM=fasm
 FASMFLAGS=
 LIBC=libc
