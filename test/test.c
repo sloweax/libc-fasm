@@ -163,6 +163,18 @@ out:
       break;
   }
 
+  for (int i = 0; i <= 0xff; i++) {
+    tmpint = CASSERT(isdigit(i) ? 1 : 0) && CASSERT(islower(i) ? 1 : 0) &&
+             CASSERT(isupper(i) ? 1 : 0) && CASSERT(isalpha(i) ? 1 : 0) &&
+             CASSERT(isalnum(i) ? 1 : 0) && CASSERT(isascii(i) ? 1 : 0) &&
+             CASSERT(isxdigit(i) ? 1 : 0) && CASSERT(tolower(i)) &&
+             CASSERT(toupper(i));
+    if (!tmpint) {
+      printf("failed on i = %d\n", i);
+      break;
+    }
+  }
+
   CASSERT(abs(INT_MAX));
   CASSERT(abs(INT_MIN + 1));
 
@@ -171,72 +183,6 @@ out:
 
   CASSERT(llabs(LLONG_MAX));
   CASSERT(llabs(LLONG_MIN + 1));
-
-  ASSERT(fasm_isdigit('0'));
-  ASSERT(fasm_isdigit('9'));
-  ASSERT(!fasm_isdigit('9' + 1));
-  ASSERT(!fasm_isdigit('0' - 1));
-
-  ASSERT(fasm_islower('a'));
-  ASSERT(fasm_islower('z'));
-  ASSERT(!fasm_islower('z' + 1));
-  ASSERT(!fasm_islower('a' - 1));
-
-  ASSERT(fasm_isupper('A'));
-  ASSERT(fasm_isupper('Z'));
-  ASSERT(!fasm_isupper('Z' + 1));
-  ASSERT(!fasm_isupper('A' - 1));
-
-  ASSERT(fasm_isalpha('A'));
-  ASSERT(fasm_isalpha('Z'));
-  ASSERT(!fasm_isalpha('Z' + 1));
-  ASSERT(!fasm_isalpha('A' - 1));
-  ASSERT(fasm_isalpha('a'));
-  ASSERT(fasm_isalpha('z'));
-  ASSERT(!fasm_isalpha('z' + 1));
-  ASSERT(!fasm_isalpha('a' - 1));
-
-  ASSERT(fasm_isalnum('A'));
-  ASSERT(fasm_isalnum('Z'));
-  ASSERT(!fasm_isalnum('Z' + 1));
-  ASSERT(!fasm_isalnum('A' - 1));
-  ASSERT(fasm_isalnum('a'));
-  ASSERT(fasm_isalnum('z'));
-  ASSERT(!fasm_isalnum('z' + 1));
-  ASSERT(!fasm_isalnum('a' - 1));
-  ASSERT(fasm_isalnum('0'));
-  ASSERT(fasm_isalnum('9'));
-  ASSERT(!fasm_isalnum('0' - 1));
-  ASSERT(!fasm_isalnum('9' + 1));
-
-  ASSERT(fasm_isascii(0));
-  ASSERT(fasm_isascii(1));
-  ASSERT(fasm_isascii(127));
-  ASSERT(!fasm_isascii(128));
-  ASSERT(!fasm_isascii(-1));
-
-  ASSERT(fasm_isxdigit('f'));
-  ASSERT(!fasm_isxdigit('f' + 1));
-  ASSERT(fasm_isxdigit('F'));
-  ASSERT(!fasm_isxdigit('F' + 1));
-  ASSERT(fasm_isxdigit('a'));
-  ASSERT(!fasm_isxdigit('a' - 1));
-  ASSERT(fasm_isxdigit('A'));
-  ASSERT(!fasm_isxdigit('A' - 1));
-  ASSERT(fasm_isxdigit('0'));
-  ASSERT(!fasm_isxdigit('0' - 1));
-  ASSERT(fasm_isxdigit('9'));
-  ASSERT(!fasm_isxdigit('9' + 1));
-
-  CASSERT(tolower('A'));
-  CASSERT(tolower('Z'));
-  CASSERT(tolower('A' - 1));
-  CASSERT(tolower('Z' + 1));
-
-  CASSERT(toupper('a'));
-  CASSERT(toupper('z'));
-  CASSERT(toupper('a' - 1));
-  CASSERT(toupper('z' + 1));
 
   return ret;
 }
