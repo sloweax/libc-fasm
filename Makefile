@@ -3,6 +3,7 @@ include config.mk
 all: $(LIBC).a
 
 OBJ=$(patsubst %.asm,%.o,$(wildcard src/*/*.asm))
+OBJ+=$(patsubst %.asm,%.o,$(wildcard src/sys/*/*.asm))
 
 %.o: %.asm
 	$(FASM) $(FASMFLAGS) $^ $@
