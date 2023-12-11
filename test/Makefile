@@ -10,7 +10,9 @@ all: test
 ../$(LIBC).a:
 	cd .. && $(MAKE) PREFIX=fasm_ $(LIBC).a
 
-test-bin: test.o unit.o ../$(LIBC).a
+OBJ=$(patsubst %.c,%.o,$(wildcard *.c))
+
+test-bin: $(OBJ) ../$(LIBC).a
 	$(CC) $(CFLAGS) $^ -o $@
 
 test: test-bin
