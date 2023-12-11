@@ -10,6 +10,8 @@ _start:
   lea rdx, [edi*8+16]
   add rdx, rsp             ; envp
   mov [environ], rdx
+  mov rax, [rsi]
+  mov [__progname], rax
 
   call plt main
 
@@ -19,3 +21,6 @@ _start:
 section '.bss' writeable
 public environ
 environ rq 1
+
+public __progname
+__progname rq 1
