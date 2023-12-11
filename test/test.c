@@ -1,3 +1,4 @@
+#include "unit.h"
 #include <ctype.h>
 #include <fcntl.h>
 #include <limits.h>
@@ -7,9 +8,6 @@
 #include <string.h>
 #include <strings.h>
 #include <unistd.h>
-
-#define ASSERT(x) (test(#x, __LINE__, __FILE__, (x)))
-#define CASSERT(x) ASSERT((x) == (fasm_##x))
 
 extern char **environ;
 extern char **fasm_environ;
@@ -37,17 +35,6 @@ extern int fasm_isalpha(int);
 extern int fasm_isxdigit(int);
 extern int fasm_tolower(int);
 extern int fasm_toupper(int);
-
-int ret = 0;
-
-int test(char *exp, int line, char *file, int status) {
-  if (!status) {
-    printf("FAILED\t%s:%d %s\n", file, line, exp);
-    ret = 1;
-  }
-
-  return status;
-}
 
 int main(int argc, char **argv, char **envp) {
 
@@ -185,5 +172,5 @@ out:
   CASSERT(llabs(LLONG_MAX));
   CASSERT(llabs(LLONG_MIN + 1));
 
-  return ret;
+  return 0;
 }
