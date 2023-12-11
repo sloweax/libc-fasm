@@ -74,8 +74,6 @@ void test_string() {
   }
 out:
 
-  return;
-
   CASSERT(memcmp("abc", "abc", 0));
   CASSERT(memcmp("abc", "123", 0));
   CASSERT(memcmp("abc", "abc", 3));
@@ -86,4 +84,6 @@ out:
   CASSERT(memcmp("abc123", "abc456", 3));
   CASSERT(memcmp("abcd\x00", "abcd\xff", 5));
   CASSERT(memcmp("abcd\xff", "abcd\x00", 5));
+
+  return;
 }
