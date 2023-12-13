@@ -5,6 +5,7 @@ format ELF64
 section '.text' executable
 extrn mmap
 extrn memset
+extrn __finit
 public __fcreate
 ; void *__fcreate(int fd);  
 __fcreate:
@@ -30,13 +31,8 @@ __fcreate:
   mov file, rax
 
   mov rdi, file
-  mov esi, 0
-  mov rdx, 12
-  call memset ; zero file.fd + file.pos
-
-  mov dword [file + file.fd], fd
-
-  mov rax, file
+  mov esi, fd
+  call plt __finit
 
   .return:
     pop qfd
