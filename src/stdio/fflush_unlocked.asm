@@ -4,6 +4,7 @@ format ELF64
 
 section '.text' executable
 public fflush_unlocked
+extrn fileno
 extrn write
 extrn memcpy
 fflush_unlocked:
@@ -20,8 +21,10 @@ fflush_unlocked:
   test rdx, rdx
   jz .return
 
+  call plt fileno
+  mov edi, eax
+
   mov towrite, rdx
-  mov edi, dword [file + file.fd]
   lea rsi, [file + file.buf]
   call write
 
