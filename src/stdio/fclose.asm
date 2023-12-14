@@ -5,6 +5,7 @@ format ELF64
 section '.text' executable
 public fclose
 extrn __ffree
+extrn fileno
 extrn fflush_unlocked
 extrn close
 fclose:
@@ -15,7 +16,9 @@ fclose:
   cmp eax, EOF
   je .return
 
-  mov edi, dword [rbx]
+  mov rdi, rbx
+  call plt fileno
+  mov edi, eax
   call plt close
   cmp eax, -1
   je .return
