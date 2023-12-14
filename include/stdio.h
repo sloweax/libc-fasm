@@ -15,6 +15,7 @@ extern FILE __stderr;
 
 FILE *fopen(const char pathname, const char *mode);
 int fclose(FILE *stream);
+int fileno(FILE *stream);
 size_t fwrite_unlocked(const void *p, size_t size, size_t n, FILE *stream);
 int fflush_unlocked(FILE *stream);
 int fputc_unlocked(int c, FILE *stream);
