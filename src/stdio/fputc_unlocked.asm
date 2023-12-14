@@ -12,6 +12,7 @@ fputc_unlocked:
 
   mov file, rsi
 
+  .start:
   mov rsi, qword [file + file.pos]
   cmp rsi, file.bufsize
   jb .add_char
@@ -23,9 +24,7 @@ fputc_unlocked:
   cmp eax, EOF
   je .return
 
-  mov rsi, file
-  call fputc_unlocked
-  jmp .return
+  jmp .start
 
   .add_char:
     mov byte [file + file.buf + rsi], dil
