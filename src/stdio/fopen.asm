@@ -77,8 +77,8 @@ isvalidmode:
     lea rdi, [rbx+1]
   .loop:
     mov cl, byte [rdi]
-    cmp cl, 0
-    je .return
+    test cl, cl
+    jz .return
     cmp cl, '+'
     je .next
     cmp cl, 'b'
