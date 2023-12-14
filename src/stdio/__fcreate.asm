@@ -4,7 +4,6 @@ format ELF64
 
 section '.text' executable
 extrn mmap
-extrn memset
 extrn __finit
 public __fcreate
 ; void *__fcreate(int fd);  
