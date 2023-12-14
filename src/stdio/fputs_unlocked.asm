@@ -31,10 +31,6 @@ fputs_unlocked:
   cmp rax, len
   jne .eof
 
-  mov edi, 0x0a
-  mov rsi, file
-  call plt fputc_unlocked
-
   .return:
     pop len
     pop str
