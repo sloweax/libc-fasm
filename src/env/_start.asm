@@ -29,7 +29,6 @@ _start:
   mov rax, [rsi]
   mov [__progname], rax
 
-  push rbx
   call plt main
   mov ebx, eax
 
@@ -38,7 +37,6 @@ _start:
 
   mov rdi, __stderr
   call plt fflush_unlocked
-  pop rbx
 
   mov edi, ebx
   call plt _exit
